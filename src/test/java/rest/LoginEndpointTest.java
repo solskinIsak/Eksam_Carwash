@@ -51,6 +51,7 @@ public class LoginEndpointTest {
         RestAssured.defaultParser = Parser.JSON;
     }
 
+
     @AfterAll
     public static void closeTestServer() {
         //Don't forget this, if you called its counterpart in @BeforeAll
