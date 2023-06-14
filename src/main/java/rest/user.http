@@ -51,4 +51,14 @@ DELETE http://localhost:8080/bubblebusters/api/booking/delete/4
 x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3NjIyNjgsImlhdCI6MTY4Njc2MDQ2OCwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.VtC1l0ywnwi174EzQeUvTu2khPZV93_AaWWMH-RZ9No
 ###
 GET http://localhost:8080/bubblebusters/api/car/all
+###
+PATCH http://localhost:8080/bubblebusters/api/car/edit/AH24666
+x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3NzMxNjYsImlhdCI6MTY4Njc3MTM2NiwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.bGmZJBYnD2smGI3Eps13JhDtArQW0IPiQHymgMxnsVQ
+Content-Type: application/json
+
+{
+  "brand": "Ford",
+  "make": "FIESTAAAAA",
+  "year": 2008
+}
 

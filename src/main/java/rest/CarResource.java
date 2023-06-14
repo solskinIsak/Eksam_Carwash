@@ -59,4 +59,30 @@ public class CarResource {
         return Response.ok().entity(GSON.toJson(carDTOS)).build();
     }
 
+    @PATCH
+    @Path("edit/{id}")
+    @RolesAllowed({"admin"})
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateCar(@PathParam("id") String id, String jsonString) throws API_Exception {
+        String brand;
+        String make;
+        int year;
+        try {
+            JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
+            brand = json.get("brand").getAsString();
+            make = json.get("make").getAsString();
+            year = json.get("year").getAsInt();
+        } catch (Exception e) {
+            throw new API_Exception("Malformed JSON Suplied", 400, e);
+        }
+
+        try {
+            FACADE.updateCar(id, brand, make, year);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Response.ok().entity(GSON.toJson("Boat has successfully been updated")).build();
+    }
+
 }

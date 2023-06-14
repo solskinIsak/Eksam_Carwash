@@ -48,4 +48,15 @@ public class CarFacade {
             List<Car> cars = query.getResultList();
             return CarDTO.getCarDTOS(cars);
     }
+
+    public void updateCar(String regNum,String brand, String make, int year) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Car car = entityManager.find(Car.class, regNum);
+        car.setBrand(brand);
+        car.setMake(make);
+        car.setYear(year);
+        entityManager.getTransaction().begin();
+        entityManager.merge(car);
+        entityManager.getTransaction().commit();
+    }
 }
