@@ -1,6 +1,7 @@
 package dtos;
 
 import entities.Booking;
+import entities.Car;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -18,12 +19,19 @@ public class CarDTO implements Serializable {
     public CarDTO() {
     }
 
-    public CarDTO(String id, String brand, String make, Integer year, List<Booking> bookings) {
+    public CarDTO(String id, String brand, String make, Integer year) {
         this.id = id;
         this.brand = brand;
         this.make = make;
         this.year = year;
-        this.bookings = bookings;
+    }
+
+    public static List<CarDTO> getCarDTOS(List<Car> cars) {
+        List<CarDTO> carDTOS = new java.util.ArrayList<>();
+        for(Car car : cars) {
+            carDTOS.add(new CarDTO(car.getId(),car.getBrand(), car.getMake(), car.getYear()));
+        }
+        return carDTOS;
     }
 
     public String getId() {
@@ -70,7 +78,6 @@ public class CarDTO implements Serializable {
                 "id = " + id + ", " +
                 "brand = " + brand + ", " +
                 "make = " + make + ", " +
-                "year = " + year + ", " +
-                "bookings = " + bookings + ")";
+                "year = " + year + ")";
     }
 }

@@ -1,9 +1,12 @@
 package facades;
 
+import dtos.CarDTO;
 import entities.Car;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class CarFacade {
 
@@ -37,5 +40,12 @@ public class CarFacade {
             em.close();
         }
         return car;
+    }
+
+    public List<CarDTO> getAllCars(){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+            TypedQuery<Car> query = entityManager.createQuery("SELECT c FROM Car c", Car.class);
+            List<Car> cars = query.getResultList();
+            return CarDTO.getCarDTOS(cars);
     }
 }

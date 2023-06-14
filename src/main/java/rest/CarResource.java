@@ -4,18 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dtos.CarDTO;
 import errorhandling.API_Exception;
 import facades.CarFacade;
 import utils.EMF_Creator;
 
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("car")
 public class CarResource {
@@ -51,4 +50,13 @@ public class CarResource {
         }
         return Response.ok().entity(GSON.toJson("Car has successfully been created")).build();
     }
+
+    @GET
+    @Path("all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllCars() {
+        List<CarDTO> carDTOS = FACADE.getAllCars();
+        return Response.ok().entity(GSON.toJson(carDTOS)).build();
+    }
+
 }
