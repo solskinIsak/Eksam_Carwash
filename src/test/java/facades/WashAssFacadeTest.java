@@ -1,11 +1,13 @@
 package facades;
 
+import dtos.Washing_AssistantDTO;
 import entities.Washing_Assistant;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,12 +33,12 @@ class WashAssFacadeTest {
         assertEquals(exAssistant.getName(),acAssistant.getName());
     }
 
-//    @Test
-//    void getAllWashingAssistants() {
-//        System.out.println("testing get all assistants");
-//        Washing_Assistant exAssistant = new Washing_Assistant("Yesman","test1","LOOOTS",19999);
-//        facade.createWashingAssistant(exAssistant.getName(), exAssistant.getPrimaryLanguage(),exAssistant.getYears_of_experience(),exAssistant.getPrice_pr_hour());
-//        List<Washing_AssistantDTO> washing_assistantDTOS = facade.getAllWashingAssistants();
-//        assertEquals(washing_assistantDTOS.size(),facade.getAllWashingAssistants().size());
-//    }
+    @Test
+    void getAllWashingAssistants() {
+        System.out.println("testing get all assistants");
+        Washing_Assistant exAssistant = new Washing_Assistant("Yesman","test1","LOOOTS",19999);
+        facade.createWashingAssistant(exAssistant.getName(), exAssistant.getPrimaryLanguage(),exAssistant.getYears_of_experience(),exAssistant.getPrice_pr_hour());
+        List<Washing_AssistantDTO> washing_assistantDTOS = facade.getAllWashingAssistants();
+        assertEquals(washing_assistantDTOS.size(),facade.getAllWashingAssistants().size());
+    }
 }
