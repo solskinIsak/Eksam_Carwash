@@ -63,7 +63,7 @@ public class Booking {
     public Booking(LocalDateTime dateAndTime, Integer duration, String car) {
         this.dateAndTime = dateAndTime;
         this.duration = duration;
-        this.car = new Car(car);
+        this.car = new Car(car); //TODO: skal være bare Registreringsnummeret og ikke en entitet KUN med registreringsnummeret FIX hvis tid
     }
 
     public Booking(Long id, LocalDateTime dateAndTime, Integer duration, Washing_AssistantDTO washing_assistants, CarDTO carDTO) {
@@ -113,5 +113,17 @@ public class Booking {
 
     public String getRegNum() {
         return car.getId();
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", dateAndTime=" + dateAndTime +
+                ", duration=" + duration +
+                ", washing_Assistants=" + washing_Assistants +
+                ", userList=" + userList +
+                ", car=" + car +
+                '}';
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "car")
+@NamedQuery(name = "car.deleteAllRows", query = "DELETE from Car")
 public class Car {
     @Id
     @Basic(optional = false)
@@ -78,5 +79,14 @@ public class Car {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "regNum='" + id + '\'' +
+                ", brand='" + brand + '\'' +
+                ", make='" + make + '\'' +
+                ", year=" + year + '\'' +'}';
     }
 }

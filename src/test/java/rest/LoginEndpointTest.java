@@ -1,5 +1,7 @@
 package rest;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entities.Role;
 import entities.User;
 import entities.Washing_Assistant;
@@ -71,6 +73,7 @@ public class LoginEndpointTest {
             //Delete existing users and roles to get a "fresh" database
             em.createQuery("delete from User").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
+            em.createQuery("delete from Washing_Assistant").executeUpdate();
 
             Role userRole = new Role("user");
             Role adminRole = new Role("admin");
@@ -228,26 +231,28 @@ public class LoginEndpointTest {
                 .body("message", equalTo("Not authenticated - do login"));
     }
 
-//    @Test
-//    public void testGetAllAssistants() {
-//        login("user", "test");
-//        given()
-//                .contentType("application/json")
-//                .header("x-access-token", securityToken)
-//                .when()
-//                .get("/assistant/all").then()
-//                .statusCode(200)
-//                .body("size()", equalTo(8));
-//    }
-
     @Test
-    public void testCreateWashingAssistant(){
-        login("admin", "test");
-        Washing_Assistant washing_assistant = new Washing_Assistant("Bubblington","SOAPANEESE","42 years",1);
+    public void testGetAllAssistants() {
+        login("user", "test");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
-                .body(washing_assistant)
+                .when()
+                .get("/assistant/all").then()
+                .statusCode(200)
+                .body("size()", equalTo(2));
+    }
+
+    @Test
+    public void testCreateWashingAssistant(){
+        Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+        login("admin", "test");
+        Washing_Assistant washing_assistant = new Washing_Assistant("Bubblington","SOAPANEESE","42 years",1);
+        String json = GSON.toJson(washing_assistant);
+        given()
+                .contentType("application/json")
+                .header("x-access-token", securityToken)
+                .body(json)
                 .when()
                 .post("/assistant/create").then()
                 .statusCode(200);

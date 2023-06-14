@@ -93,4 +93,16 @@ public class Washing_Assistant {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Washing_Assistant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", primaryLanguage='" + primaryLanguage + '\'' +
+                ", years_of_experience='" + years_of_experience + '\'' +
+                ", price_pr_hour=" + price_pr_hour +
+                ", bookings=" + bookings +
+                '}';
+    }
 }
