@@ -18,7 +18,8 @@ public class BookingDTO implements Serializable {
     }
 
 
-    public BookingDTO(LocalDateTime dateTime, int duration, String regNum) {
+    public BookingDTO(Long id,LocalDateTime dateTime, int duration, String regNum) {
+        this.id = id;
         this.dateAndTime = dateTime;
         this.duration = duration;
         this.regNum = regNum;
@@ -27,7 +28,7 @@ public class BookingDTO implements Serializable {
     public static List<BookingDTO> getBookingDTOS(List<Booking> bookings) {
         List<BookingDTO> bookingDTOS = new java.util.ArrayList<>();
         for(Booking booking : bookings) {
-            bookingDTOS.add(new BookingDTO(booking.getDateAndTime(), booking.getDuration(), booking.getRegNum()));
+            bookingDTOS.add(new BookingDTO(booking.getId(),booking.getDateAndTime(), booking.getDuration(), booking.getRegNum()));
         }
         return bookingDTOS;
     }
