@@ -9,6 +9,7 @@ import errorhandling.API_Exception;
 import facades.BookingFacade;
 import utils.EMF_Creator;
 
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -27,7 +28,7 @@ public class BookingResource {
     @GET
     @Path("all")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllBoats() {
+    public Response getAllBookings() {
         List<BookingDTO> bookingDTOS = FACADE.getAllBookings();
         return Response.ok().entity(GSON.toJson(bookingDTOS)).build();
     }
@@ -57,5 +58,19 @@ public class BookingResource {
         return Response.ok().entity(GSON.toJson("Booking has successfully been created")).build();
 
     }
+
+    @DELETE
+    @Path("delete/{id}")
+    @RolesAllowed({"admin"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteBooking(@PathParam("id")Long id)throws API_Exception {
+        try {
+            FACADE.deleteBooking(id);
+        }catch (Exception ex){
+            throw new API_Exception("Booking not found", 404, ex);
+        }
+        return Response.ok().entity(GSON.toJson("Booking has successfully been deleted")).build();
+    }
+
 
 }

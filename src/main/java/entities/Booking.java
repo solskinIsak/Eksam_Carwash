@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "booking")
+@NamedQuery(name = "booking.deleteAllRows", query = "DELETE from Booking")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -50,4 +50,16 @@ public class BookingFacade {
             return BookingDTO.getBookingDTOS(bookings);
         }
 
+        public void deleteBooking(Long id) {
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            try {
+                entityManager.getTransaction().begin();
+                Booking booking = entityManager.find(Booking.class, id);
+                entityManager.remove(booking);
+                entityManager.getTransaction().commit();
+            } finally {
+                entityManager.close();
+            }
+        }
+
 }
