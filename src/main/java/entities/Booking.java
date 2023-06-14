@@ -1,5 +1,8 @@
 package entities;
 
+import dtos.CarDTO;
+import dtos.Washing_AssistantDTO;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,9 +25,15 @@ public class Booking {
     @ManyToMany(mappedBy = "bookings")
     private List<Washing_Assistant> washing_Assistants = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "userBookings")
+    private List<User> userList;
+
+
     @ManyToOne
     @JoinColumn(name = "car_registration_number")
     private Car car;
+
+
 
     public Car getCar() {
         return car;
@@ -45,6 +54,25 @@ public class Booking {
     public Booking() {
     }
 
+    public Booking(LocalDateTime dateAndTime, Integer duration) {
+        this.dateAndTime = dateAndTime;
+        this.duration = duration;
+    }
+
+    public Booking(LocalDateTime dateAndTime, Integer duration, String car) {
+        this.dateAndTime = dateAndTime;
+        this.duration = duration;
+        this.car = new Car(car);
+    }
+
+    public Booking(Long id, LocalDateTime dateAndTime, Integer duration, Washing_AssistantDTO washing_assistants, CarDTO carDTO) {
+        this.id = id;
+        this.dateAndTime = dateAndTime;
+        this.duration = duration;
+        this.washing_Assistants.add(new Washing_Assistant(washing_assistants.getId()));
+        this.car = new Car(carDTO.getId(), carDTO.getBrand(), carDTO.getMake(), carDTO.getYear());
+    }
+
     public Integer getDuration() {
         return duration;
     }
@@ -57,6 +85,14 @@ public class Booking {
         return dateAndTime;
     }
 
+    public List<User> getUserList() {
+        return userList;
+    }
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+
 
     public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
@@ -68,5 +104,13 @@ public class Booking {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Washing_Assistant getWashing_Assistant() {
+        return washing_Assistants.get(0);
+    }
+
+    public String getRegNum() {
+        return car.getId();
     }
 }

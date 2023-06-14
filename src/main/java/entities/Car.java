@@ -26,12 +26,23 @@ public class Car {
     @OneToMany(mappedBy = "car", orphanRemoval = true)
     private List<Booking> bookings = new ArrayList<>();
 
+    public Car(String id, String brand, String make, Integer year) {
+        this.id = id;
+        this.brand = brand;
+        this.make = make;
+        this.year = year;
+    }
+
     public List<Booking> getBookings() {
         return bookings;
     }
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public Car(String id) {
+        this.id = id;
     }
 
     public Car() {

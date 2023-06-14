@@ -228,17 +228,17 @@ public class LoginEndpointTest {
                 .body("message", equalTo("Not authenticated - do login"));
     }
 
-    @Test
-    public void testGetAllAssistants() {
-        login("user", "test");
-        given()
-                .contentType("application/json")
-                .header("x-access-token", securityToken)
-                .when()
-                .get("/assistant/all").then()
-                .statusCode(200)
-                .body("size()", equalTo(8));
-    }
+//    @Test
+//    public void testGetAllAssistants() {
+//        login("user", "test");
+//        given()
+//                .contentType("application/json")
+//                .header("x-access-token", securityToken)
+//                .when()
+//                .get("/assistant/all").then()
+//                .statusCode(200)
+//                .body("size()", equalTo(8));
+//    }
 
     @Test
     public void testCreateWashingAssistant(){

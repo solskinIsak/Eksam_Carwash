@@ -13,7 +13,7 @@ GET http://localhost:8080/bubblebusters/api/info/admin
 x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3MzkwMjksImlhdCI6MTY4NjczNzIyOSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.RAJsCap5iRY_kYhVUQnZR0hHL9SYHitKlpEbb-DrJVU
 ###
 POST http://localhost:8080/bubblebusters/api/assistant/create
-x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3MzkwMjksImlhdCI6MTY4NjczNzIyOSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.RAJsCap5iRY_kYhVUQnZR0hHL9SYHitKlpEbb-DrJVU
+x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3NTcyNzksImlhdCI6MTY4Njc1NTQ3OSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.AQgVolxe56MJISAddB8j5-z7U3P96A06euBcykA9bSY
 Content-Type: application/json
 
 {
@@ -24,3 +24,26 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:8080/bubblebusters/api/assistant/all
+###
+POST http://localhost:8080/bubblebusters/api/booking/create
+Content-Type: application/json
+
+{
+  "date_and_time": "2024-04-01T12:00:00",
+  "duration": 4,
+  "regNum": "AH24666"
+}
+###
+POST http://localhost:8080/bubblebusters/api/car/create
+x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3NTcyNzksImlhdCI6MTY4Njc1NTQ3OSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.AQgVolxe56MJISAddB8j5-z7U3P96A06euBcykA9bSY
+Content-Type: application/json
+
+{
+  "regNum": "AH24666",
+  "brand": "Ford",
+  "make": "Focus",
+  "year": 2012
+}
+###
+GET http://localhost:8080/bubblebusters/api/booking/all
+

@@ -41,6 +41,9 @@ public class Washing_Assistant {
         this.price_pr_hour = price_pr_hour;
     }
 
+    public Washing_Assistant(Long id) {
+        this.id = id;
+    }
 
 
     public String getName() {
