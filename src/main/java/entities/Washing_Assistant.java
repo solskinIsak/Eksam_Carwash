@@ -1,18 +1,20 @@
 package entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "washing_assistant")
+@NamedQuery(name = "washing_assistant.deleteAllRows", query = "DELETE from Washing_Assistant")
 public class Washing_Assistant {
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "primary_language")
     private String primaryLanguage;
@@ -28,6 +30,26 @@ public class Washing_Assistant {
             joinColumns = @JoinColumn(name = "washing_Assistant_id"),
             inverseJoinColumns = @JoinColumn(name = "bookings_id"))
     private List<Booking> bookings = new ArrayList<>();
+
+    public Washing_Assistant() {
+    }
+
+    public Washing_Assistant(String name, String primaryLanguage, String years_of_experience, Integer price_pr_hour) {
+        this.name = name;
+        this.primaryLanguage = primaryLanguage;
+        this.years_of_experience = years_of_experience;
+        this.price_pr_hour = price_pr_hour;
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Booking> getBookings() {
         return bookings;

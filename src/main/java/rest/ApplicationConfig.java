@@ -1,7 +1,7 @@
 package rest;
 
-import java.util.Set;
 import javax.ws.rs.core.Application;
+import java.util.Set;
 
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
         resources.add(security.RolesAllowedFilter.class);
         resources.add(security.errorhandling.AuthenticationExceptionMapper.class);
         resources.add(security.errorhandling.NotAuthorizedExceptionMapper.class);
+        resources.add(rest.WashAssResource.class);
     }
     
 }

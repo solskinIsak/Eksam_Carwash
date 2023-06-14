@@ -1,6 +1,7 @@
 package dtos;
 
 import entities.Booking;
+import entities.Washing_Assistant;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Objects;
 
 public class Washing_AssistantDTO implements Serializable {
     private Long id;
+    private String name;
     private String primaryLanguage;
     private String years_of_experience;
     private Integer price_pr_hour;
@@ -16,12 +18,16 @@ public class Washing_AssistantDTO implements Serializable {
     public Washing_AssistantDTO() {
     }
 
-    public Washing_AssistantDTO(Long id, String primaryLanguage, String years_of_experience, Integer price_pr_hour, List<Booking> bookings) {
-        this.id = id;
-        this.primaryLanguage = primaryLanguage;
-        this.years_of_experience = years_of_experience;
-        this.price_pr_hour = price_pr_hour;
-        this.bookings = bookings;
+    public Washing_AssistantDTO(Washing_Assistant washing_assistant){
+        this.id = washing_assistant.getId();
+        this.name = washing_assistant.getName();
+        this.primaryLanguage = washing_assistant.getPrimaryLanguage();
+        this.years_of_experience = washing_assistant.getYears_of_experience();
+        this.price_pr_hour = washing_assistant.getPrice_pr_hour();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Long getId() {

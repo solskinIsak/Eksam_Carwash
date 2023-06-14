@@ -1,26 +1,27 @@
 package rest;
 
-import entities.User;
 import entities.Role;
-
+import entities.User;
+import entities.Washing_Assistant;
 import io.restassured.RestAssured;
-import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
-import java.net.URI;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import static org.hamcrest.Matchers.equalTo;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 //Disabled
 public class LoginEndpointTest {
@@ -80,6 +81,10 @@ public class LoginEndpointTest {
             User both = new User("user_admin", "test");
             both.addRole(userRole);
             both.addRole(adminRole);
+            Washing_Assistant washing_assistant = new Washing_Assistant("Washing Assistantt","Assistaneese","multitude",1);
+            Washing_Assistant washing_assistant2 = new Washing_Assistant("Assistant of the wash","Assistican","lots",1);
+            em.persist(washing_assistant);
+            em.persist(washing_assistant2);
             em.persist(userRole);
             em.persist(adminRole);
             em.persist(user);
@@ -221,6 +226,31 @@ public class LoginEndpointTest {
                 .statusCode(403)
                 .body("code", equalTo(403))
                 .body("message", equalTo("Not authenticated - do login"));
+    }
+
+    @Test
+    public void testGetAllAssistants() {
+        login("user", "test");
+        given()
+                .contentType("application/json")
+                .header("x-access-token", securityToken)
+                .when()
+                .get("/assistant/all").then()
+                .statusCode(200)
+                .body("size()", equalTo(10));
+    }
+
+    @Test
+    public void testCreateWashingAssistant(){
+        login("admin", "test");
+        Washing_Assistant washing_assistant = new Washing_Assistant("Bubblington","SOAPANEESE","42 years",1);
+        given()
+                .contentType("application/json")
+                .header("x-access-token", securityToken)
+                .body(washing_assistant)
+                .when()
+                .post("/assistant/create").then()
+                .statusCode(200);
     }
 
 }

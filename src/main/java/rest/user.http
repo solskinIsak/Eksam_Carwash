@@ -10,5 +10,17 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:8080/bubblebusters/api/info/admin
-x-access-token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODYzMDQ5NzUsImlhdCI6MTY4NjMwMzE3NSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.B7n-9aeXXOmHXJR7tBeRysdSqMgUP0tF86MO3cOPeVY
+x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3MzkwMjksImlhdCI6MTY4NjczNzIyOSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.RAJsCap5iRY_kYhVUQnZR0hHL9SYHitKlpEbb-DrJVU
+###
+POST http://localhost:8080/bubblebusters/api/assistant/create
+x-Access-Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjoiYWRtaW4iLCJleHAiOjE2ODY3MzkwMjksImlhdCI6MTY4NjczNzIyOSwiaXNzdWVyIjoic2VtZXN0ZXJzdGFydGNvZGUtZGF0MyIsInVzZXJuYW1lIjoiYWRtaW4ifQ.RAJsCap5iRY_kYhVUQnZR0hHL9SYHitKlpEbb-DrJVU
+Content-Type: application/json
 
+{
+  "name": "Bubbles McShine",
+  "primaryLanguage": "Bubblonian",
+  "years_of_experience": "Soapy Decades",
+  "price_pr_hour": 250
+}
+###
+GET http://localhost:8080/bubblebusters/api/assistant/all
