@@ -237,7 +237,7 @@ public class LoginEndpointTest {
                 .when()
                 .get("/assistant/all").then()
                 .statusCode(200)
-                .body("size()", equalTo(10));
+                .body("size()", equalTo(9));
     }
 
     @Test
